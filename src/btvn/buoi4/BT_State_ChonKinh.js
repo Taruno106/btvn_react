@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import './BT_State_ChonKinh.css'
+
 export default class BT_State_ChonKinh extends Component {
 
     arrGlass = [
@@ -7,63 +9,63 @@ export default class BT_State_ChonKinh extends Component {
             "id": 1,
             "price": 30,
             "name": "GUCCI G8850U",
-            "url": "./glassesImage/v1.png",
+            "url": "./img/BT_ChonKinh/v1.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 2,
             "price": 50,
             "name": "GUCCI G8759H",
-            "url": "./glassesImage/v2.png",
+            "url": "./img/BT_ChonKinh/v2.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 3,
             "price": 30,
             "name": "DIOR D6700HQ",
-            "url": "./glassesImage/v3.png",
+            "url": "./img/BT_ChonKinh/v3.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 4,
             "price": 70,
             "name": "DIOR D6005U",
-            "url": "./glassesImage/v4.png",
+            "url": "./img/BT_ChonKinh/v4.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 5,
             "price": 40,
             "name": "PRADA P8750",
-            "url": "./glassesImage/v5.png",
+            "url": "./img/BT_ChonKinh/v5.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 6,
             "price": 60,
             "name": "PRADA P9700",
-            "url": "./glassesImage/v6.png",
+            "url": "./img/BT_ChonKinh/v6.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 7,
             "price": 80,
             "name": "FENDI F8750",
-            "url": "./glassesImage/v7.png",
+            "url": "./img/BT_ChonKinh/v7.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 8,
             "price": 100,
             "name": "FENDI F8500",
-            "url": "./glassesImage/v8.png",
+            "url": "./img/BT_ChonKinh/v8.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
         {
             "id": 9,
             "price": 60,
             "name": "FENDI F4300",
-            "url": "./glassesImage/v9.png",
+            "url": "./img/BT_ChonKinh/v9.png",
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         }
     ]
@@ -76,90 +78,71 @@ export default class BT_State_ChonKinh extends Component {
             "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
         },
     }
-    renderGlassList = () => {
+    
+
+    renderButton = () => {
         return this.arrGlass.map((glass, index) => {
-            return <div className="row">
-                <div className="col-2">
-                    <div className="card">
-                        <img src={this.state.glassDetail.url} className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">{this.state.glassDetail.name}</h5>
-                            <p className="card-text">{this.state.glassDetail.desc}</p>
+            return <div className="col-2 py-3" key={index}>
+                <button onClick={() => {
+                    this.xemThongTin(glass)
+                }}>
+                    <img className="img-fluid" src={glass.url} alt="" />
+                </button>
+            </div>
+        })
+    }
+
+    xemThongTin = (newGlass) => {
+        console.log("click xem");
+        this.setState({
+            glassDetail: newGlass,
+        })
+
+    }
+
+    render() {
+        let bg = {
+            background: "url(./img/BT_ChonKinh/background.jpg)",
+            height: "100vh",
+            position: "absolute",
+        }
+        let bgModel = {
+            backgroundImage: "url(./img/BT_ChonKinh/model.jpg)",
+            backgroundSize: "cover",
+            height: "18rem",
+            border: "1px solid white",
+        }
+        let { glassDetail } = this.state;
+        return (
+            <div className="container-fluid" style={bg}>
+                <h1 className="text w-100 h1">TRY GLASSES APP ONLINE</h1>
+                <div className="row posRow">
+                    <div className="col-2">
+                        <div className="item" style={bgModel}>
+                            {/* {this.renderGlassList()} */}
+                            <div className="content">
+                                <img src="./img/BT_ChonKinh/v1.png" className="imgGlass" alt="..." />
+                                <h5 className="">GUCCI G8850U</h5>
+                                <p>Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-2">
+                        <div className="item" style={bgModel}>
+
+                            <div className="content">
+                                <img src={glassDetail.url} className="imgGlass" alt="..." />
+                                <h5 className="">{glassDetail.name}</h5>
+                                <p>{glassDetail.desc}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        });
-        
-    }
 
-
-
-
-    render() {
-        let styleH1 = {
-            backgroundColor: "grey",
-            color: "white",
-            position: "absolute",
-        }
-        let bg = {
-            background: "url(./img/BT_ChonKinh/background.jpg)",
-            height: "720px",
-            position: "absolute",
-        }
-        let posRow = {
-            position: "relative",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            top: "100px",
-        }
-        let bgRow = {
-            backgroundColor: "white",
-        }
-        return (
-            <div className="container-fluid" style={bg}>
-                <h1 className="text w-100" style={styleH1}>TRY GLASSES APP ONLINE</h1>
-                <div className="row" style={posRow}>
-                    <div className="col-2">
-                        <img className="img-fluid" src="./img/BT_ChonKinh/model.jpg" alt="" />
-                    </div>
-                    <div className="col-2">
-                        <img className="img-fluid" src="./img/BT_ChonKinh/model.jpg" alt="" />
-                    </div>
-                </div>
-
-                <div className="row mt-5" style={posRow}>
-                    <div className="col-8" style={bgRow}>
+                <div className="row posRow mt-5">
+                    <div className="col-8 bgRow">
                         <div className="row py-5">
-                            <div className="col-2">
-                                <button className="btn btn-success" onClick={() => {
-                                    this.renderGlassList()
-                                }}>V1</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success mb-3">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success mb-3">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success mb-3">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success">Black</button>
-                            </div>
-                            <div className="col-2">
-                                <button className="btn btn-success">Black</button>
-                            </div>
+                            {this.renderButton()}
                         </div>
                     </div>
                 </div>
